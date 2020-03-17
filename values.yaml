@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: vectorim/riot-web
-  tag: v1.5.12
+  tag: v1.5.13
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

@@ -12,8 +12,6 @@ spec:
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
-      annotations:
-        checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
       labels:
         app.kubernetes.io/name: {{ include "riot-im.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
@@ -31,10 +29,16 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/bin/sh"]
+          args:
+            - "-c"
+            - |
+              rm /app/config.json && \
+                ln -s /config/config.json /app/config.json && \
+                exec nginx -g "daemon off;"
           volumeMounts:
             - name: config
-              mountPath: "/app/config.json"
-              subPath: config.json
+              mountPath: "/config"
           ports:
             - name: http
               containerPort: 80

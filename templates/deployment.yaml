@@ -1,26 +1,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "riot-im.fullname" . }}
+  name: {{ include "element-io.fullname" . }}
   labels:
-{{ include "riot-im.labels" . | indent 4 }}
+{{ include "element-io.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "riot-im.name" . }}
+      app.kubernetes.io/name: {{ include "element-io.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "riot-im.name" . }}
+        app.kubernetes.io/name: {{ include "element-io.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
     {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      serviceAccountName: {{ template "riot-im.serviceAccountName" . }}
+      serviceAccountName: {{ template "element-io.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
@@ -68,4 +68,4 @@ spec:
       volumes:
         - name: config
           secret:
-            secretName: {{ include "riot-im.fullname" . }}
+            secretName: {{ include "element-io.fullname" . }}

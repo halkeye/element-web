@@ -1,4 +1,4 @@
-# Default values for riot-im.
+# Default values for element-io.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -104,7 +104,7 @@ configjson:
       - matrix.org
   welcomeUserId: "@riot-bot:matrix.org"
   piwik:
-    url: https://piwik.riot.im/
+    url: https://piwik.element.io/
     whitelistedHSUrls:
       - https://matrix.org
     whitelistedISUrls:

@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "riot-im.fullname" . }}
+  name: {{ include "element-io.fullname" . }}
   labels:
-{{ include "riot-im.labels" . | indent 4 }}
+{{ include "element-io.labels" . | indent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,5 +12,5 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "riot-im.name" . }}
+    app.kubernetes.io/name: {{ include "element-io.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}

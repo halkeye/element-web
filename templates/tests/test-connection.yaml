@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "riot-im.fullname" . }}-test-connection"
+  name: "{{ include "element-io.fullname" . }}-test-connection"
   labels:
-{{ include "riot-im.labels" . | indent 4 }}
+{{ include "element-io.labels" . | indent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "riot-im.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "element-io.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never

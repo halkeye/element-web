@@ -35,13 +35,20 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "element-web.labels" -}}
-app.kubernetes.io/name: {{ include "element-web.name" . }}
 helm.sh/chart: {{ include "element-web.chart" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
+{{ include "element-web.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end -}}
+
+{{/*
+Selector labels
+*/}}
+{{- define "element-web.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "element-web.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}
 
 {{/*

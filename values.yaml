@@ -16,6 +16,8 @@ fullnameOverride: ""
 serviceAccount:
   # Specifies whether a service account should be created
   create: true
+  # Annotations to add to the service account
+  annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name:
@@ -24,6 +26,7 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext: {}
+  # privileged: true
   # capabilities:
   #   drop:
   #   - ALL
@@ -32,8 +35,21 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  externalTrafficPolicy:
   type: ClusterIP
   port: 80
+
+probes:
+  liveness:
+    failureThreshold: 5
+    periodSeconds: 10
+  readiness:
+    failureThreshold: 5
+    periodSeconds: 10
+  startup:
+    initialDelaySeconds: 5
+    failureThreshold: 30
+    periodSeconds: 10
 
 ingress:
   enabled: false
@@ -66,6 +82,10 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+podAnnotations: {}
+
+deploymentAnnotations: {}
 
 configjson:
   # either default_server_config or default_server_name (https://matrix.org/.well-known/matrix/client)

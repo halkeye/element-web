@@ -23,4 +23,4 @@ annotations:
   artifacthub.io/containsSecurityUpdates: "false"
   artifacthub.io/images: |
     - name: element-web
-      image: vectorim/element-web:v1.10.3
+      image: "vectorim/element-web:v1.10.3"

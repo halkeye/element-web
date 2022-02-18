@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: vectorim/element-web
-  tag: "{{ .Chart.AppVersion }}"
+  tag: "v1.10.3"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

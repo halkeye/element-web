@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: vectorim/element-web
-  tag: "v1.10.3"
+  tag: "v1.10.4"
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

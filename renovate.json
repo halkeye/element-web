@@ -15,5 +15,8 @@
       "datasourceTemplate": "docker",
       "versioningTemplate": "docker"
     }
-  ]
+  ],
+  "helmv3": {
+    "enabled": true
+  }
 }
